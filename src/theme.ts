@@ -106,14 +106,14 @@ export default createMuiTheme({
     },
   },
   typography: {
-    fontFamily: 'Inter, sans-serif',
+    fontFamily: 'Montserrat, sans-serif',
   },
   palette: {
     primary: {
-      main: '#027AC5',
+      main: '#584475',
     },
   },
-  brand: '#E22525',
+  brand: '#584475',
   footerHeight: 72,
   mobileFooterHeight: 56,
   sidebarWidth: 355,

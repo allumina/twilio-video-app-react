@@ -10,7 +10,7 @@ import useVideoContext from '../../hooks/useVideoContext/useVideoContext';
 import Video from 'twilio-video';
 
 export enum Steps {
-  roomNameStep,
+  // roomNameStep,
   deviceSelectionStep,
 }
 
@@ -18,13 +18,15 @@ export default function PreJoinScreens() {
   const { user } = useAppState();
   const { getAudioAndVideoTracks } = useVideoContext();
   const { URLRoomName } = useParams();
-  const [step, setStep] = useState(Steps.roomNameStep);
+  const { URLUserName } = useParams();
+  const [step, setStep] = useState(Steps.deviceSelectionStep);
 
   const [name, setName] = useState<string>(user?.displayName || '');
   const [roomName, setRoomName] = useState<string>('');
 
   const [mediaError, setMediaError] = useState<Error>();
 
+  /*
   useEffect(() => {
     if (URLRoomName) {
       setRoomName(URLRoomName);
@@ -33,6 +35,16 @@ export default function PreJoinScreens() {
       }
     }
   }, [user, URLRoomName]);
+  */
+
+  useEffect(() => {
+    if (URLRoomName) {
+      setRoomName(URLRoomName);
+    }
+    if (URLUserName) {
+      setName(URLUserName);
+    }
+  }, [URLUserName, URLRoomName]);
 
   useEffect(() => {
     if (step === Steps.deviceSelectionStep && !mediaError) {
@@ -59,9 +71,10 @@ export default function PreJoinScreens() {
       <MediaErrorSnackbar error={mediaError} />
     </>
   );
-
+  /*
   return (
     <IntroContainer subContent={step === Steps.deviceSelectionStep && SubContent}>
+      
       {step === Steps.roomNameStep && (
         <RoomNameScreen
           name={name}
@@ -72,6 +85,15 @@ export default function PreJoinScreens() {
         />
       )}
 
+      {step === Steps.deviceSelectionStep && (
+        <DeviceSelectionScreen name={name} roomName={roomName} setStep={setStep} />
+      )}
+    </IntroContainer>
+  );
+*/
+
+  return (
+    <IntroContainer subContent={step === Steps.deviceSelectionStep && SubContent}>
       {step === Steps.deviceSelectionStep && (
         <DeviceSelectionScreen name={name} roomName={roomName} setStep={setStep} />
       )}

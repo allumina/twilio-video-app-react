@@ -23,7 +23,7 @@ function AboutDialog({ open, onClose }: PropsWithChildren<AboutDialogProps>) {
       <DialogTitle>About</DialogTitle>
       <Divider />
       <DialogContent>
-        <DialogContentText>Browser supported: {String(Video.isSupported)}</DialogContentText>
+        <DialogContentText>Supporto browser: {String(Video.isSupported)}</DialogContentText>
         <DialogContentText>SDK Version: {Video.version}</DialogContentText>
         <DialogContentText>App Version: {appVersion}</DialogContentText>
         <DialogContentText>Deployed Tag: {process.env.REACT_APP_GIT_TAG || 'N/A'}</DialogContentText>

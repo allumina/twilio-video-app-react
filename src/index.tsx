@@ -30,6 +30,7 @@ const VideoApp = () => {
   );
 };
 
+/*
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
     <CssBaseline />
@@ -46,6 +47,23 @@ ReactDOM.render(
             <LoginPage />
           </Route>
           <Redirect to="/" />
+        </Switch>
+      </AppStateProvider>
+    </Router>
+  </MuiThemeProvider>,
+  document.getElementById('root')
+);
+*/
+
+ReactDOM.render(
+  <MuiThemeProvider theme={theme}>
+    <CssBaseline />
+    <Router>
+      <AppStateProvider>
+        <Switch>
+          <PrivateRoute path="/Communications/Room/:URLRoomName/:URLUserName">
+            <VideoApp />
+          </PrivateRoute>
         </Switch>
       </AppStateProvider>
     </Router>

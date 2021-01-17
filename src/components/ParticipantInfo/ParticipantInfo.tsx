@@ -167,6 +167,7 @@ export default function ParticipantInfo({
   const isParticipantReconnecting = useParticipantIsReconnecting(participant);
 
   const classes = useStyles();
+  const roomInfo = (window as any).roomInfo;
 
   return (
     <div
@@ -190,8 +191,8 @@ export default function ParticipantInfo({
           <span className={classes.identity}>
             <AudioLevelIndicator audioTrack={audioTrack} />
             <Typography variant="body1" className={classes.typeography} component="span">
-              {participant.identity}
-              {isLocalParticipant && ' (You)'}
+              {roomInfo.ParticipantsInfo[participant.identity].PublicName}
+              {isLocalParticipant && ' (Tu)'}
             </Typography>
           </span>
         </div>

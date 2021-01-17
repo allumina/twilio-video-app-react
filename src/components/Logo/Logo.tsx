@@ -11,7 +11,7 @@ export default function Logo(props: SVGProps<SVGSVGElement>) {
         transform="matrix(.04584 0 0 -.04586 0 29.99999775)"
         d="M979.031 193.367H2639.37"
         stroke="#4A463D"
-        stroke-width=".5"
+        strokeWidth=".5"
         fill="none"
       />
       <path
@@ -22,7 +22,7 @@ export default function Logo(props: SVGProps<SVGSVGElement>) {
         transform="matrix(.04584 0 0 -.04586 0 29.99999775)"
         d="M866.922 2.80078V579.789"
         stroke="#4A463D"
-        stroke-width=".5"
+        strokeWidth=".5"
         fill="none"
       />
       <path

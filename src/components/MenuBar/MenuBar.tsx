@@ -68,6 +68,7 @@ export default function MenuBar() {
   const roomState = useRoomState();
   const isReconnecting = roomState === 'reconnecting';
   const { room } = useVideoContext();
+  const roomInfo = (window as any).roomInfo;
 
   return (
     <>
@@ -81,7 +82,7 @@ export default function MenuBar() {
         <Grid container justify="space-around" alignItems="center">
           <Hidden smDown>
             <Grid style={{ flex: 1 }}>
-              <Typography variant="body1">{room.name}</Typography>
+              <Typography variant="body1">{roomInfo.Name}</Typography>
             </Grid>
           </Hidden>
           <Grid item>

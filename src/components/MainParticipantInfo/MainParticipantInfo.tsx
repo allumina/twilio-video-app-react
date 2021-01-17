@@ -5,6 +5,7 @@ import { LocalAudioTrack, LocalVideoTrack, Participant, RemoteAudioTrack, Remote
 
 import AvatarIcon from '../../icons/AvatarIcon';
 import Typography from '@material-ui/core/Typography';
+import Logo from '../Logo/Logo';
 
 import useIsTrackSwitchedOff from '../../hooks/useIsTrackSwitchedOff/useIsTrackSwitchedOff';
 import usePublications from '../../hooks/usePublications/usePublications';
@@ -25,7 +26,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: 'white',
     padding: '0.1em 0.3em 0.1em 0',
     fontSize: '1.2em',
-    display: 'inline-flex',
+    // display: 'inline-flex',
+    display: 'none',
     '& svg': {
       marginLeft: '0.3em',
     },
@@ -69,6 +71,12 @@ const useStyles = makeStyles((theme: Theme) => ({
       transform: 'scale(2)',
     },
   },
+  azLogo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    margin: '20px',
+  },
 }));
 
 interface MainParticipantInfoProps {
@@ -99,6 +107,8 @@ export default function MainParticipantInfo({ participant, children }: MainParti
   const isVideoSwitchedOff = useIsTrackSwitchedOff(videoTrack as LocalVideoTrack | RemoteVideoTrack);
   const isParticipantReconnecting = useParticipantIsReconnecting(participant);
 
+  const roomInfo = (window as any).roomInfo;
+
   return (
     <div
       data-cy-main-participant
@@ -108,12 +118,13 @@ export default function MainParticipantInfo({ participant, children }: MainParti
       })}
     >
       <div className={classes.infoContainer}>
+        <Logo className={classes.azLogo} />
         <div className={classes.identity}>
           <AudioLevelIndicator audioTrack={audioTrack} />
           <Typography variant="body1" color="inherit">
-            {participant.identity}
-            {isLocal && ' (You)'}
-            {screenSharePublication && ' - Screen'}
+            {roomInfo.ParticipantsInfo[participant.identity].PublicName}
+            {isLocal && ' (Tu)'}
+            {screenSharePublication && ' - Condivisione Schermo'}
           </Typography>
         </div>
       </div>

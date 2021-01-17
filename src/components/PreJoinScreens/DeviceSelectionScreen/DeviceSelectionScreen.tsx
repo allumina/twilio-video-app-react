@@ -61,6 +61,7 @@ export default function DeviceSelectionScreen({ name, roomName, setStep }: Devic
   const { getToken, isFetching } = useAppState();
   const { connect, isAcquiringLocalTracks, isConnecting } = useVideoContext();
   const disableButtons = isFetching || isAcquiringLocalTracks || isConnecting;
+  const roomInfo = (window as any).roomInfo;
 
   const handleJoin = () => {
     getToken(name, roomName).then(token => connect(token));
@@ -69,13 +70,13 @@ export default function DeviceSelectionScreen({ name, roomName, setStep }: Devic
   return (
     <>
       <Typography variant="h5" className={classes.gutterBottom}>
-        Accedi alla stanza
+        Accedi alla stanza {roomInfo.Name}
       </Typography>
 
       <Grid container justify="center">
         <Grid item md={7} sm={12} xs={12}>
           <div className={classes.localPreviewContainer}>
-            <LocalVideoPreview identity={name} />
+            <LocalVideoPreview identity={roomInfo.Participant.PublicName} />
           </div>
           <div className={classes.mobileButtonBar}>
             <Hidden mdUp>

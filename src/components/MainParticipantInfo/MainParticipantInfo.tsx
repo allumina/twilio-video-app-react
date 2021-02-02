@@ -71,11 +71,15 @@ const useStyles = makeStyles((theme: Theme) => ({
       transform: 'scale(2)',
     },
   },
-  azLogo: {
+  azLogoContainer: {
     position: 'absolute',
     top: 0,
     left: 0,
-    margin: '20px',
+    padding: '8px',
+    margin: '16px 0',
+    backgroundColor: 'rgba(255, 255, 255, 1.0)',
+    width: '200px',
+    height: 'auto',
   },
 }));
 
@@ -86,11 +90,12 @@ interface MainParticipantInfoProps {
 
 export default function MainParticipantInfo({ participant, children }: MainParticipantInfoProps) {
   const classes = useStyles();
+  const roomInfo = (window as any).roomInfo;
   const {
     room: { localParticipant },
   } = useVideoContext();
   const isLocal = localParticipant === participant;
-
+  const isInternal = roomInfo.ParticipantsInfo[participant.identity].External === false;
   const screenShareParticipant = useScreenShareParticipant();
   const isRemoteParticipantScreenSharing = screenShareParticipant && screenShareParticipant !== localParticipant;
 
@@ -107,8 +112,6 @@ export default function MainParticipantInfo({ participant, children }: MainParti
   const isVideoSwitchedOff = useIsTrackSwitchedOff(videoTrack as LocalVideoTrack | RemoteVideoTrack);
   const isParticipantReconnecting = useParticipantIsReconnecting(participant);
 
-  const roomInfo = (window as any).roomInfo;
-
   return (
     <div
       data-cy-main-participant
@@ -118,7 +121,7 @@ export default function MainParticipantInfo({ participant, children }: MainParti
       })}
     >
       <div className={classes.infoContainer}>
-        <Logo className={classes.azLogo} />
+        {isInternal && <Logo className={classes.azLogoContainer} />}
         <div className={classes.identity}>
           <AudioLevelIndicator audioTrack={audioTrack} />
           <Typography variant="body1" color="inherit">

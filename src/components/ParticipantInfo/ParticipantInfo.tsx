@@ -14,6 +14,7 @@ import useIsTrackSwitchedOff from '../../hooks/useIsTrackSwitchedOff/useIsTrackS
 import usePublications from '../../hooks/usePublications/usePublications';
 import useTrack from '../../hooks/useTrack/useTrack';
 import useParticipantIsReconnecting from '../../hooks/useParticipantIsReconnecting/useParticipantIsReconnecting';
+import Logo from '../Logo/Logo';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -132,6 +133,16 @@ const useStyles = makeStyles((theme: Theme) =>
     cursorPointer: {
       cursor: 'pointer',
     },
+    azLogoContainer: {
+      position: 'absolute',
+      top: 0,
+      right: 0,
+      padding: '4px',
+      margin: '4px 0',
+      backgroundColor: 'rgba(255, 255, 255, 1.0)',
+      width: '25%',
+      height: 'auto',
+    },
   })
 );
 
@@ -168,6 +179,7 @@ export default function ParticipantInfo({
 
   const classes = useStyles();
   const roomInfo = (window as any).roomInfo;
+  const isInternal = roomInfo.ParticipantsInfo[participant.identity].External === false;
 
   return (
     <div
@@ -179,6 +191,7 @@ export default function ParticipantInfo({
       data-cy-participant={participant.identity}
     >
       <div className={classes.infoContainer}>
+        {isInternal && <Logo className={classes.azLogoContainer} />}
         <div className={classes.networkQualityContainer}>
           <NetworkQualityLevel participant={participant} />
         </div>

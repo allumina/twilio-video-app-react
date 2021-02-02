@@ -65,11 +65,15 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
     },
   },
-  azLogo: {
+  azLogoContainer: {
     position: 'absolute',
     top: 0,
     left: 0,
-    margin: '20px',
+    padding: '8px',
+    margin: '16px 0',
+    backgroundColor: 'rgba(255, 255, 255, 1.0)',
+    width: '200px',
+    height: 'auto',
   },
   content: {
     background: 'white',
@@ -107,7 +111,7 @@ const IntroContainer = (props: IntroContainerProps) => {
 
   return (
     <div className={classes.background}>
-      <Logo className={classes.azLogo} />
+      <Logo className={classes.azLogoContainer} />
       {user && location.pathname !== '/login' && <UserMenu />}
       <div className={classes.container}>
         <div className={classes.innerContainer}>

@@ -67,10 +67,10 @@ export default function AppStateProvider(props: React.PropsWithChildren<{}>) {
         const headers = new window.Headers();
         const endpoint = '/Communications/Token'; // process.env.REACT_APP_TOKEN_ENDPOINT || '/token';
         // -- const params = new window.URLSearchParams({ identity, roomName });
-        return fetch(`${endpoint}/${roomName}/${identity}`, { headers }).then(res => res.text());
+        // return fetch(`${endpoint}/${roomName}/${identity}`, { headers }).then(res => res.text());
         // FOR LOCAL
-        // const params = new window.URLSearchParams({ identity, roomName });
-        // return fetch(`${endpoint}?${params}`, { headers }).then(res => res.text());
+        const params = new window.URLSearchParams({ identity, roomName });
+        return fetch(`${endpoint}?${params}`, { headers }).then(res => res.text());
       },
     };
   }

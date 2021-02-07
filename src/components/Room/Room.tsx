@@ -1,5 +1,6 @@
 import React from 'react';
 import ParticipantList from '../ParticipantList/ParticipantList';
+import ParticipantGrid from '../ParticipantGrid/ParticipantGrid';
 import { styled } from '@material-ui/core/styles';
 import MainParticipant from '../MainParticipant/MainParticipant';
 
@@ -22,10 +23,14 @@ const Container = styled('div')(({ theme }) => {
 });
 
 export default function Room() {
+  const roomInfo = (window as any).roomInfo;
+  const roomMode = Number(roomInfo.Mode);
+
   return (
     <Container>
-      <MainParticipant />
-      <ParticipantList />
+      {(roomMode == 0 || roomMode == 1) && <MainParticipant />}
+      {(roomMode == 0 || roomMode == 1) && <ParticipantList />}
+      {roomMode == 2 && <ParticipantGrid />}
     </Container>
   );
 }

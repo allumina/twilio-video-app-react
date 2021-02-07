@@ -2,9 +2,24 @@ import { ConnectOptions } from 'twilio-video';
 import { isMobile, removeUndefineds } from '..';
 import { getResolution } from '../../state/settings/renderDimensions';
 import { useAppState } from '../../state';
+import { VideoBandwidthProfileOptions } from 'twilio-video';
 
 export default function useConnectionOptions() {
   const { roomType, settings } = useAppState();
+  const roomInfo = (window as any).roomInfo;
+
+  switch (roomInfo.Mode) {
+    case 1:
+      settings.bandwidthProfileMode = 'presentation';
+      break;
+    case 2:
+      settings.bandwidthProfileMode = 'grid';
+      break;
+    default:
+      settings.bandwidthProfileMode = 'collaboration';
+      break;
+  }
+  settings.maxTracks = '50';
 
   // See: https://media.twiliocdn.com/sdk/js/video/releases/2.0.0/docs/global.html#ConnectOptions
   // for available connection options.

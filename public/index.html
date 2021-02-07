@@ -9,12 +9,138 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/SiteImages/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="/SiteImages/favicon.ico">
     <link rel="mask-icon" href="/SiteImages/favicon.ico" color="#5bbad5">
+    <style>
+    /* Container */
+    #Dish {
+        display: flex;
+        align-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        vertical-align: middle;
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        top: 0px;
+        right: 0px;
+    }
+/* Camera */
+    #Dish div {
+
+        position: relative;
+        vertical-align: middle;
+        align-self: center;
+        border-radius: 10px;
+        overflow: hidden;
+        display: inline-block;
+        box-shadow: 0px 12px 22px rgba(0, 0, 0, 0.4);
+        background: #fff;
+        animation: show 0.4s ease;
+
+    }
+/* Details (optional) */
+    /* Aspect Ratio Number */
+        #Dish div:after {
+            color: #aaa;
+            font-size: 13px;
+            font-family: Arial, Helvetica, sans-serif;
+            position: absolute;
+            bottom: 20px;
+            right: 23px;
+            font-weight: 100;
+            content: "4:3";
+            display: block;
+        }
+    /* Gray Diagonal */
+        #Dish div:before {
+            position: absolute;
+            height: 1px;
+            background: #ddd;
+            width: 100%;
+            transform: rotate(-37deg);
+            top: 50%;
+            font-weight: 100;
+            content: "4:3";
+            display: block;
+            ;
+        }
+/* Animation */
+    @keyframes show {
+        0% {
+            opacity: 0;
+            transform: scale(0.4) translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+  </style>
   </head>
   <body>
     <noscript>Per il corretto funzionamento dell'applicazione è necessario abilitare JavaScript.</noscript>
     <div id="root"></div>
     <script>
       window.roomInfo = {"Id":1015,"Identifier":"096866ee-fb1d-4033-9531-66b3df53ae77","ExternalIdentifier":"RM3e2fd283014a3bede227c6564482f95a","MaxParticipants":2,"OwnerId":1,"Name":"Test 23","Code":"","Disabled":false,"CreationDate":"\/Date(1612239984340)\/","LastUpdateDate":"\/Date(1612240510213)\/","StartDate":null,"Duration":0,"Mode":0,"Status":-1,"Participants":[{"Id":1022,"RoomId":1015,"UserId":"1","Identifier":"cdc23490-bb74-455d-bc6a-b8279946b943","External":false,"PublicName":"giuseppe","Level":100,"Token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJpc3MiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxIiwiZXhwIjoxNjEyMjQ0MTQ1LCJqdGkiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxLTE2MTIyNDA1NDUiLCJzdWIiOiJBQzE4NGExZmViYjRhNDYzNTcyNGFkOGE0ODJjOTZhNDFkIiwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiY2RjMjM0OTAtYmI3NC00NTVkLWJjNmEtYjgyNzk5NDZiOTQzIiwidmlkZW8iOnsicm9vbSI6IjA5Njg2NmVlLWZiMWQtNDAzMy05NTMxLTY2YjNkZjUzYWU3NyJ9fX0.ZAy3_C_kpuqpgVR76cn-y_UGKAEZ0CtyGx1CX3aWP18","Type":1,"Status":-1},{"Id":1023,"RoomId":1015,"UserId":"4427","Identifier":"b1831077-1a21-4bdd-9b7b-1f3e53ce8160","External":false,"PublicName":"Gianluca Esposito","Level":10,"Token":"","Type":1,"Status":-1},{"Id":1024,"RoomId":1015,"UserId":"giaesp@gmail.com","Identifier":"97d24a13-dc2a-4f58-91ff-05b0f56be11e","External":true,"PublicName":"Gianluca","Level":0,"Token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJpc3MiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxIiwiZXhwIjoxNjEyMjQ0MTEwLCJqdGkiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxLTE2MTIyNDA1MTAiLCJzdWIiOiJBQzE4NGExZmViYjRhNDYzNTcyNGFkOGE0ODJjOTZhNDFkIiwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiOTdkMjRhMTMtZGMyYS00ZjU4LTkxZmYtMDViMGY1NmJlMTFlIiwidmlkZW8iOnsicm9vbSI6IjA5Njg2NmVlLWZiMWQtNDAzMy05NTMxLTY2YjNkZjUzYWU3NyJ9fX0.1t5nQ2cs4lKJkJaIFQ1t-fgaWJtpogCcWGaJz2u3yGk","Type":0,"Status":-1}],"ParticipantsInfo":{"cdc23490-bb74-455d-bc6a-b8279946b943":{"Id":1022,"RoomId":1015,"UserId":"1","Identifier":"cdc23490-bb74-455d-bc6a-b8279946b943","External":false,"PublicName":"giuseppe","Level":100,"Token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJpc3MiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxIiwiZXhwIjoxNjEyMjQ0MTQ1LCJqdGkiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxLTE2MTIyNDA1NDUiLCJzdWIiOiJBQzE4NGExZmViYjRhNDYzNTcyNGFkOGE0ODJjOTZhNDFkIiwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiY2RjMjM0OTAtYmI3NC00NTVkLWJjNmEtYjgyNzk5NDZiOTQzIiwidmlkZW8iOnsicm9vbSI6IjA5Njg2NmVlLWZiMWQtNDAzMy05NTMxLTY2YjNkZjUzYWU3NyJ9fX0.ZAy3_C_kpuqpgVR76cn-y_UGKAEZ0CtyGx1CX3aWP18","Type":1,"Status":-1},"b1831077-1a21-4bdd-9b7b-1f3e53ce8160":{"Id":1023,"RoomId":1015,"UserId":"4427","Identifier":"b1831077-1a21-4bdd-9b7b-1f3e53ce8160","External":false,"PublicName":"Gianluca Esposito","Level":10,"Token":"","Type":1,"Status":-1},"97d24a13-dc2a-4f58-91ff-05b0f56be11e":{"Id":1024,"RoomId":1015,"UserId":"giaesp@gmail.com","Identifier":"97d24a13-dc2a-4f58-91ff-05b0f56be11e","External":true,"PublicName":"Gianluca","Level":0,"Token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJpc3MiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxIiwiZXhwIjoxNjEyMjQ0MTEwLCJqdGkiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxLTE2MTIyNDA1MTAiLCJzdWIiOiJBQzE4NGExZmViYjRhNDYzNTcyNGFkOGE0ODJjOTZhNDFkIiwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiOTdkMjRhMTMtZGMyYS00ZjU4LTkxZmYtMDViMGY1NmJlMTFlIiwidmlkZW8iOnsicm9vbSI6IjA5Njg2NmVlLWZiMWQtNDAzMy05NTMxLTY2YjNkZjUzYWU3NyJ9fX0.1t5nQ2cs4lKJkJaIFQ1t-fgaWJtpogCcWGaJz2u3yGk","Type":0,"Status":-1}},"Participant":{"Id":1022,"RoomId":1015,"UserId":"1","Identifier":"cdc23490-bb74-455d-bc6a-b8279946b943","External":false,"PublicName":"giuseppe","Level":100,"Token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJpc3MiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxIiwiZXhwIjoxNjEyMjQ0MTQ1LCJqdGkiOiJTSzAxNmU3MmY4NjA3MjdkZmM2ZDhiMmIxMDM3YTU5ZTUxLTE2MTIyNDA1NDUiLCJzdWIiOiJBQzE4NGExZmViYjRhNDYzNTcyNGFkOGE0ODJjOTZhNDFkIiwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiY2RjMjM0OTAtYmI3NC00NTVkLWJjNmEtYjgyNzk5NDZiOTQzIiwidmlkZW8iOnsicm9vbSI6IjA5Njg2NmVlLWZiMWQtNDAzMy05NTMxLTY2YjNkZjUzYWU3NyJ9fX0.ZAy3_C_kpuqpgVR76cn-y_UGKAEZ0CtyGx1CX3aWP18","Type":1,"Status":-1},"ParticipantsCount":3,"EndDate":"\/Date(-62135596800000)\/","Expired":false,"Started":false,"Timed":false};
+  </script>
+  <script>
+    // Area:
+    function Area(Increment, Count, Width, Height, Margin = 10) {
+        let i = w = 0;
+        let h = Increment * 0.75 + (Margin * 2);
+        while (i < (Count)) {
+            if ((w + Increment) > Width) {
+                w = 0;
+                h = h + (Increment * 0.75) + (Margin * 2);
+            }
+            w = w + Increment + (Margin * 2);
+            i++;
+        }
+        if (h > Height) return false;
+        else return Increment;
+    }
+// Dish:
+    function Dish() {
+
+        // variables:
+            let Margin = 2;
+            let Scenary = document.getElementById('Dish');
+            let Width = Scenary.offsetWidth - (Margin * 2);
+            let Height = Scenary.offsetHeight - (Margin * 2);
+            let Cameras = document.getElementsByClassName('Camera');
+            let max = 0;
+        
+        // loop (i recommend you optimize this)
+            let i = 1;
+            while (i < 5000) {
+                let w = Area(i, Cameras.length, Width, Height, Margin);
+                if (w === false) {
+                    max =  i - 1;
+                    break;
+                }
+                i++;
+            }
+        
+        // set styles
+            max = max - (Margin * 2);
+            setWidth(max, Margin);
+    }
+
+// Set Width and Margin 
+    function setWidth(width, margin) {
+        let Cameras = document.getElementsByClassName('Camera');
+        for (var s = 0; s < Cameras.length; s++) {
+            Cameras[s].style.width = width + "px";
+            Cameras[s].style.margin = margin + "px";
+            Cameras[s].style.height = (width * 0.75) + "px";
+        }
+    }
+
+// Load and Resize Event
+    window.addEventListener("load", function (event) {
+        Dish();
+        window.onresize = Dish;
+    }, false);
   </script>
   </body>
 </html>

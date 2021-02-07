@@ -129,6 +129,12 @@ export default function MainParticipantInfo({ participant, children }: MainParti
             {isLocal && ' (Tu)'}
             {screenSharePublication && ' - Condivisione Schermo'}
           </Typography>
+          {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
+            roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != '' && (
+              <Typography variant="body1" color="inherit">
+                {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle}
+              </Typography>
+            )}
         </div>
       </div>
       {(!isVideoEnabled || isVideoSwitchedOff) && (

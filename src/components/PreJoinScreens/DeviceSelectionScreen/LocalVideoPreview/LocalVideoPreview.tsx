@@ -34,6 +34,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
+  jobtitle: {
+    background: 'rgba(0, 0, 0, 0.5)',
+    color: 'white',
+    padding: 0,
+    margin: 0,
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: '0.6rem',
+  },
   avatarContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -53,7 +62,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-export default function LocalVideoPreview({ identity }: { identity: string }) {
+export default function LocalVideoPreview({ jobtitle, identity }: { jobtitle: string; identity: string }) {
   const classes = useStyles();
   const { localTracks } = useVideoContext();
 
@@ -75,7 +84,14 @@ export default function LocalVideoPreview({ identity }: { identity: string }) {
         <span className={classes.identity}>
           <LocalAudioLevelIndicator />
           <Typography variant="body1" color="inherit" component="span">
-            {identity}
+            {identity}{' '}
+            {jobtitle != null && jobtitle != '' && (
+              <span className={classes.jobtitle}>
+                <Typography variant="body1" color="inherit" component="span">
+                  {jobtitle}
+                </Typography>
+              </span>
+            )}
           </Typography>
         </span>
       </div>

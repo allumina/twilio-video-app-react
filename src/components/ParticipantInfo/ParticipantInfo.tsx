@@ -207,6 +207,12 @@ export default function ParticipantInfo({
               {roomInfo.ParticipantsInfo[participant.identity].PublicName}
               {isLocalParticipant && ' (Tu)'}
             </Typography>
+            {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
+              roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != '' && (
+                <Typography variant="body1" color="inherit">
+                  {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle}
+                </Typography>
+              )}
           </span>
         </div>
         <div>{isSelected && <PinIcon />}</div>

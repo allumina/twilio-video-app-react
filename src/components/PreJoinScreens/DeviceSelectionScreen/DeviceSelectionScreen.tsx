@@ -76,7 +76,22 @@ export default function DeviceSelectionScreen({ name, roomName, setStep }: Devic
       <Grid container justify="center">
         <Grid item md={7} sm={12} xs={12}>
           <div className={classes.localPreviewContainer}>
-            <LocalVideoPreview identity={roomInfo.Participant.PublicName} />
+            {((roomInfo.Participant.Info.FirstName != null && roomInfo.Participant.Info.FirstName != '') ||
+              (roomInfo.Participant.Info.LastName != null && roomInfo.Participant.Info.LastName != '')) && (
+              <LocalVideoPreview
+                identity={roomInfo.Participant.Info.FirstName + ' ' + roomInfo.Participant.Info.LastName}
+                jobtitle={roomInfo.Participant.Info.JobTitle}
+              />
+            )}
+
+            {(roomInfo.Participant.Info.FirstName == null ||
+              roomInfo.Participant.Info.FirstName == '' ||
+              roomInfo.Participant.Info.LastName == null || roomInfo.Participant.Info.LastName == '') && (
+              <LocalVideoPreview
+                identity={roomInfo.Participant.PublicName}
+                jobtitle={roomInfo.Participant.Info.JobTitle}
+              />
+            )}
           </div>
           <div className={classes.mobileButtonBar}>
             <Hidden mdUp>

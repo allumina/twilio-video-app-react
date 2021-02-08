@@ -143,6 +143,16 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '25%',
       height: 'auto',
     },
+    jobtitle: {
+      background: 'rgba(0, 0, 0, 0.5)',
+      color: 'white',
+      padding: 0,
+      margin: 0,
+      display: 'flex',
+      alignItems: 'center',
+      fontWeight: 'normal',
+      fontSize: '0.7rem',
+    },
   })
 );
 
@@ -183,7 +193,7 @@ export default function ParticipantInfo({
 
   return (
     <div
-      className={clsx(classes.container, {
+      className={clsx('Camera', classes.container, {
         [classes.hideParticipant]: hideParticipant,
         [classes.cursorPointer]: Boolean(onClick),
       })}
@@ -209,7 +219,7 @@ export default function ParticipantInfo({
             </Typography>
             {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
               roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != '' && (
-                <Typography variant="body1" color="inherit">
+                <Typography variant="body2" className={classes.jobtitle} color="inherit" component="span">
                   {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle}
                 </Typography>
               )}

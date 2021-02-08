@@ -7,6 +7,10 @@ import ToggleAudioButton from '../../Buttons/ToggleAudioButton/ToggleAudioButton
 import ToggleVideoButton from '../../Buttons/ToggleVideoButton/ToggleVideoButton';
 import { useAppState } from '../../../state';
 import useVideoContext from '../../../hooks/useVideoContext/useVideoContext';
+import { useHasVideoInputDevices } from '../../../hooks/deviceHooks/deviceHooks';
+import useLocalVideoToggle from '../../../hooks/useLocalVideoToggle/useLocalVideoToggle';
+import useLocalAudioToggle from '../../../hooks/useLocalAudioToggle/useLocalAudioToggle';
+import { LocalAudioTrack, LocalVideoTrack } from 'twilio-video';
 
 const useStyles = makeStyles((theme: Theme) => ({
   gutterBottom: {
@@ -58,14 +62,35 @@ interface DeviceSelectionScreenProps {
 
 export default function DeviceSelectionScreen({ name, roomName, setStep }: DeviceSelectionScreenProps) {
   const classes = useStyles();
+  const roomInfo = (window as any).roomInfo;
   const { getToken, isFetching } = useAppState();
   const { connect, isAcquiringLocalTracks, isConnecting } = useVideoContext();
-  const disableButtons = isFetching || isAcquiringLocalTracks || isConnecting;
-  const roomInfo = (window as any).roomInfo;
+  const disableButtons =
+    isFetching ||
+    isAcquiringLocalTracks ||
+    isConnecting ||
+    (roomInfo.Mode == 1 && roomInfo.Participant.Level != 10 && roomInfo.Participant.Level != 100);
+  const disableButtonsStart = isFetching || isAcquiringLocalTracks || isConnecting;
+  const [isAudioEnabled, toggleAudioEnabled] = useLocalAudioToggle();
+  const { localTracks } = useVideoContext();
+  const hasAudioTrack = localTracks.some(track => track.kind === 'audio');
+  const audioTrack = localTracks.find(track => track.kind === 'audio') as LocalAudioTrack;
+  const videoTrack = localTracks.find(track => track.name.includes('camera')) as LocalVideoTrack;
+  const [isVideoEnabled, toggleVideoEnabled] = useLocalVideoToggle();
+  const hasVideoDevices = useHasVideoInputDevices();
 
   const handleJoin = () => {
     getToken(name, roomName).then(token => connect(token));
   };
+
+  if (roomInfo.Mode == 1 && roomInfo.Participant.Level != 10 && roomInfo.Participant.Level != 100) {
+    if (hasAudioTrack && isAudioEnabled) {
+      audioTrack.disable();
+    }
+    if (hasVideoDevices && isVideoEnabled) {
+      videoTrack.disable();
+    }
+  }
 
   return (
     <>
@@ -86,7 +111,8 @@ export default function DeviceSelectionScreen({ name, roomName, setStep }: Devic
 
             {(roomInfo.Participant.Info.FirstName == null ||
               roomInfo.Participant.Info.FirstName == '' ||
-              roomInfo.Participant.Info.LastName == null || roomInfo.Participant.Info.LastName == '') && (
+              roomInfo.Participant.Info.LastName == null ||
+              roomInfo.Participant.Info.LastName == '') && (
               <LocalVideoPreview
                 identity={roomInfo.Participant.PublicName}
                 jobtitle={roomInfo.Participant.Info.JobTitle}
@@ -115,7 +141,7 @@ export default function DeviceSelectionScreen({ name, roomName, setStep }: Devic
                 color="primary"
                 data-cy-join-now
                 onClick={handleJoin}
-                disabled={disableButtons}
+                disabled={disableButtonsStart}
               >
                 Accedi
               </Button>

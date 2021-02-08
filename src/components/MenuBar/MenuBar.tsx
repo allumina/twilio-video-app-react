@@ -64,11 +64,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export default function MenuBar() {
   const classes = useStyles();
+  const roomInfo = (window as any).roomInfo;
   const { isSharingScreen, toggleScreenShare } = useVideoContext();
   const roomState = useRoomState();
-  const isReconnecting = roomState === 'reconnecting';
+  const isReconnecting =
+    roomState === 'reconnecting' ||
+    (roomInfo.Mode == 1 && roomInfo.Participant.Level != 10 && roomInfo.Participant.Level != 100);
   const { room } = useVideoContext();
-  const roomInfo = (window as any).roomInfo;
 
   return (
     <>

@@ -71,6 +71,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       transform: 'scale(2)',
     },
   },
+  jobtitle: {
+    background: 'rgba(0, 0, 0, 0.5)',
+    color: 'white',
+    padding: 0,
+    margin: 0,
+    display: 'flex',
+    alignItems: 'center',
+    fontWeight: 'normal',
+    fontSize: '0.7rem',
+  },
   azLogoContainer: {
     position: 'absolute',
     top: 0,
@@ -131,7 +141,7 @@ export default function MainParticipantInfo({ participant, children }: MainParti
           </Typography>
           {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
             roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != '' && (
-              <Typography variant="body1" color="inherit">
+              <Typography variant="body2" className={classes.jobtitle} color="inherit" component="span">
                 {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle}
               </Typography>
             )}

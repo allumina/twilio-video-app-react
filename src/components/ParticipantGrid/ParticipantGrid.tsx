@@ -40,21 +40,23 @@ export default function ParticipantGrid() {
   const {
     room: { localParticipant },
   } = useVideoContext();
+  const roomInfo = (window as any).roomInfo;
   const participants = useParticipants();
   const [selectedParticipant, setSelectedParticipant] = useSelectedParticipant();
   const screenShareParticipant = useScreenShareParticipant();
   const mainParticipant = useMainParticipant();
   const isRemoteParticipantScreenSharing = screenShareParticipant && screenShareParticipant !== localParticipant;
 
-  if (participants.length === 0) return null; // Don't render this component if there are no remote participants.
+  // if (participants.length === 0) return null; // Don't render this component if there are no remote participants.
 
   return (
-    <div className={classes.scrollContainer}>
+    <div id="Dish" className={classes.scrollContainer}>
       <Participant participant={localParticipant} isLocalParticipant={true} />
       {participants.map(participant => {
         const isSelected = participant === selectedParticipant;
         const hideParticipant =
-          participant === mainParticipant && participant !== screenShareParticipant && !isSelected;
+          (participant === mainParticipant && participant !== screenShareParticipant && !isSelected) ||
+          (roomInfo.Mode == 1 && roomInfo.Participant.Level != 10 && roomInfo.Participant.Level != 100);
         return (
           <Participant
             key={participant.sid}

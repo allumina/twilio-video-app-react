@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: 0,
     display: 'flex',
     alignItems: 'center',
+    fontWeight: 'bold',
+    fontSize: '0.8rem',
   },
   jobtitle: {
     background: 'rgba(0, 0, 0, 0.5)',
@@ -41,7 +43,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: 0,
     display: 'flex',
     alignItems: 'center',
-    fontSize: '0.6rem',
+    fontWeight: 'normal',
+    fontSize: '0.7rem',
   },
   avatarContainer: {
     display: 'flex',
@@ -86,11 +89,9 @@ export default function LocalVideoPreview({ jobtitle, identity }: { jobtitle: st
           <Typography variant="body1" color="inherit" component="span">
             {identity}{' '}
             {jobtitle != null && jobtitle != '' && (
-              <span className={classes.jobtitle}>
-                <Typography variant="body1" color="inherit" component="span">
-                  {jobtitle}
-                </Typography>
-              </span>
+              <Typography variant="body2" className={classes.jobtitle} color="inherit" component="span">
+                {jobtitle}
+              </Typography>
             )}
           </Typography>
         </span>

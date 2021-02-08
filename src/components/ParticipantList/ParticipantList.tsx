@@ -40,6 +40,7 @@ export default function ParticipantList() {
   const {
     room: { localParticipant },
   } = useVideoContext();
+  const roomInfo = (window as any).roomInfo;
   const participants = useParticipants();
   const [selectedParticipant, setSelectedParticipant] = useSelectedParticipant();
   const screenShareParticipant = useScreenShareParticipant();
@@ -59,7 +60,8 @@ export default function ParticipantList() {
         {participants.map(participant => {
           const isSelected = participant === selectedParticipant;
           const hideParticipant =
-            participant === mainParticipant && participant !== screenShareParticipant && !isSelected;
+            (participant === mainParticipant && participant !== screenShareParticipant && !isSelected) ||
+            (roomInfo.Mode == 1 && roomInfo.Participant.Level != 10 && roomInfo.Participant.Level != 100);
           return (
             <Participant
               key={participant.sid}

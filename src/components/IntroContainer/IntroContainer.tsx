@@ -72,8 +72,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '8px',
     margin: '16px 0',
     backgroundColor: 'rgba(255, 255, 255, 1.0)',
-    width: '200px',
+    width: '300px',
     height: 'auto',
+    '& img': {
+      height: '46px',
+      width: 'auto',
+    },
   },
   content: {
     background: 'white',

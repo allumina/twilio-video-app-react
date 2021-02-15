@@ -22,15 +22,54 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
   },
   identity: {
-    background: 'rgba(0, 0, 0, 0.5)',
+    background: '#224E80',
     color: 'white',
     padding: '0.1em 0.3em 0.1em 0',
-    fontSize: '1.2em',
-    // display: 'inline-flex',
-    display: 'none',
+    fontSize: '0.7em',
+    display: 'inline-block',
+    top: '85px',
+    width: '300px',
+    height: 'auto',
+    position: 'absolute',
     '& svg': {
       marginLeft: '0.3em',
+      width: '24px',
+      height: '24px',
+      display: 'inline-block',
+      position: 'relative',
+      top: '2px',
     },
+    '& p': {
+      fontSize: '0.8rem',
+      fontWeight: 'bold',
+      top: '-24px',
+      position: 'relative',
+      left: '30px',
+      width: 'calc(100% - 36px)',
+      lineHeight: '1.5',
+      display: 'block',
+    },
+    '& span': {
+      fontSize: '0.7rem',
+      fontWeight: 'normal',
+      display: 'block',
+      top: '-22px',
+      position: 'relative',
+      left: '26px',
+      width: 'calc(100% - 36px)',
+      lineHeight: '1.5',
+    },
+  },
+  jobtitle: {
+    color: 'white',
+    padding: 0,
+    paddingLeft: '4px',
+    margin: 0,
+    // display: 'flex',
+    alignItems: 'center',
+    fontWeight: 'normal',
+    fontSize: '0.7rem',
+    lineHeight: '2.2',
   },
   infoContainer: {
     position: 'absolute',
@@ -71,16 +110,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       transform: 'scale(2)',
     },
   },
-  jobtitle: {
-    background: 'rgba(0, 0, 0, 0.5)',
-    color: 'white',
-    padding: 0,
-    margin: 0,
-    display: 'flex',
-    alignItems: 'center',
-    fontWeight: 'normal',
-    fontSize: '0.7rem',
-  },
   azLogoContainer: {
     position: 'absolute',
     top: 0,
@@ -88,8 +117,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: '8px',
     margin: '16px 0',
     backgroundColor: 'rgba(255, 255, 255, 1.0)',
-    width: '200px',
+    width: '300px',
     height: 'auto',
+    '& img': {
+      height: '46px',
+      width: 'auto',
+    },
   },
 }));
 
@@ -136,8 +169,10 @@ export default function MainParticipantInfo({ participant, children }: MainParti
           <AudioLevelIndicator audioTrack={audioTrack} />
           <Typography variant="body1" color="inherit">
             {roomInfo.ParticipantsInfo[participant.identity].PublicName}
+            {/*
             {isLocal && ' (Tu)'}
             {screenSharePublication && ' - Condivisione Schermo'}
+            */}
           </Typography>
           {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
             roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != '' && (

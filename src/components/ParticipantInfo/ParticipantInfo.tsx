@@ -213,10 +213,35 @@ export default function ParticipantInfo({
           )}
           <span className={classes.identity}>
             <AudioLevelIndicator audioTrack={audioTrack} />
-            <Typography variant="body1" className={classes.typeography} component="span">
-              {roomInfo.ParticipantsInfo[participant.identity].PublicName}
-              {isLocalParticipant && ' (Tu)'}
-            </Typography>
+
+            {((roomInfo.ParticipantsInfo[participant.identity].Info.FirstName != null &&
+              roomInfo.ParticipantsInfo[participant.identity].Info.FirstName != '') ||
+              (roomInfo.ParticipantsInfo[participant.identity].Info.LastName != null &&
+                roomInfo.ParticipantsInfo[participant.identity].Info.LastName != '')) && (
+              <Typography variant="body1" color="inherit">
+                {roomInfo.ParticipantsInfo[participant.identity].Info.FirstName +
+                  ' ' +
+                  roomInfo.ParticipantsInfo[participant.identity].Info.LastName}
+                {/*
+                {isLocal && ' (Tu)'}
+                {screenSharePublication && ' - Condivisione Schermo'}
+                */}
+              </Typography>
+            )}
+
+            {(roomInfo.ParticipantsInfo[participant.identity].Info.FirstName == null ||
+              roomInfo.ParticipantsInfo[participant.identity].FirstName == '' ||
+              roomInfo.ParticipantsInfo[participant.identity].Info.LastName == null ||
+              roomInfo.ParticipantsInfo[participant.identity].Info.LastName == '') && (
+              <Typography variant="body1" color="inherit">
+                {roomInfo.ParticipantsInfo[participant.identity].PublicName}
+                {/*
+                {isLocal && ' (Tu)'}
+                {screenSharePublication && ' - Condivisione Schermo'}
+                */}
+              </Typography>
+            )}
+
             {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
               roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != '' && (
                 <Typography variant="body2" className={classes.jobtitle} color="inherit" component="span">

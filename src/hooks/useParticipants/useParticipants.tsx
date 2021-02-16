@@ -21,8 +21,20 @@ export default function useParticipants() {
   }, [dominantSpeaker]);
 
   useEffect(() => {
-    const participantConnected = (participant: RemoteParticipant) =>
-      setParticipants(prevParticipants => [...prevParticipants, participant]);
+    const participantConnected = (participant: RemoteParticipant) => {
+      fetch(window.location.pathname.replace('Room', 'RoomInfo'))
+        .then(
+          result => {
+            (window as any).roomInfo = result;
+          },
+          error => {
+            // DO NOTHING
+          }
+        )
+        .then(() => {
+          setParticipants(prevParticipants => [...prevParticipants, participant]);
+        });
+    };
     const participantDisconnected = (participant: RemoteParticipant) =>
       setParticipants(prevParticipants => prevParticipants.filter(p => p !== participant));
     room.on('participantConnected', participantConnected);

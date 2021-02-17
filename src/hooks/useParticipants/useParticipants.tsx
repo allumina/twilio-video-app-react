@@ -23,9 +23,17 @@ export default function useParticipants() {
   useEffect(() => {
     const participantConnected = (participant: RemoteParticipant) => {
       fetch(window.location.pathname.replace('Room', 'RoomInfo'))
+        .then(response => {
+          console.log(response);
+          return response.json();
+        })
+        .then(data => {
+          console.log(data);
+          return data;
+        })
         .then(
-          result => {
-            (window as any).roomInfo = result;
+          data => {
+            (window as any).roomInfo = data;
           },
           error => {
             // DO NOTHING

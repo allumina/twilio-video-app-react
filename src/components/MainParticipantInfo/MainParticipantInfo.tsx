@@ -166,7 +166,7 @@ export default function MainParticipantInfo({ participant, children }: MainParti
       <div className={classes.infoContainer}>
         {isInternal && <Logo className={classes.azLogoContainer} />}
         <div className={classes.identity}>
-          <AudioLevelIndicator audioTrack={audioTrack} />
+          {isInternal && <AudioLevelIndicator audioTrack={audioTrack} />}
 
           {isInternal &&
             ((roomInfo.ParticipantsInfo[participant.identity].Info.FirstName != null &&
@@ -198,7 +198,8 @@ export default function MainParticipantInfo({ participant, children }: MainParti
               </Typography>
             )}
 
-          {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
+          {isInternal &&
+            roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
             roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != '' && (
               <Typography variant="body2" className={classes.jobtitle} color="inherit" component="span">
                 {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle}

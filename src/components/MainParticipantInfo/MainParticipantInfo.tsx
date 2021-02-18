@@ -165,11 +165,12 @@ export default function MainParticipantInfo({ participant, children }: MainParti
     >
       <div className={classes.infoContainer}>
         {isInternal && <Logo className={classes.azLogoContainer} />}
-        <div className={classes.identity}>
-          {isInternal && <AudioLevelIndicator audioTrack={audioTrack} />}
 
-          {isInternal &&
-            ((roomInfo.ParticipantsInfo[participant.identity].Info.FirstName != null &&
+        {isInternal && (
+          <div className={classes.identity}>
+            {<AudioLevelIndicator audioTrack={audioTrack} />}
+
+            {((roomInfo.ParticipantsInfo[participant.identity].Info.FirstName != null &&
               roomInfo.ParticipantsInfo[participant.identity].Info.FirstName != '') ||
               (roomInfo.ParticipantsInfo[participant.identity].Info.LastName != null &&
                 roomInfo.ParticipantsInfo[participant.identity].Info.LastName != '')) && (
@@ -184,8 +185,7 @@ export default function MainParticipantInfo({ participant, children }: MainParti
               </Typography>
             )}
 
-          {isInternal &&
-            (roomInfo.ParticipantsInfo[participant.identity].Info.FirstName == null ||
+            {(roomInfo.ParticipantsInfo[participant.identity].Info.FirstName == null ||
               roomInfo.ParticipantsInfo[participant.identity].Info.FirstName == '' ||
               roomInfo.ParticipantsInfo[participant.identity].Info.LastName == null ||
               roomInfo.ParticipantsInfo[participant.identity].Info.LastName == '') && (
@@ -198,14 +198,14 @@ export default function MainParticipantInfo({ participant, children }: MainParti
               </Typography>
             )}
 
-          {isInternal &&
-            roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
-            roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != '' && (
-              <Typography variant="body2" className={classes.jobtitle} color="inherit" component="span">
-                {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle}
-              </Typography>
-            )}
-        </div>
+            {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != null &&
+              roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle != '' && (
+                <Typography variant="body2" className={classes.jobtitle} color="inherit" component="span">
+                  {roomInfo.ParticipantsInfo[participant.identity].Info.JobTitle}
+                </Typography>
+              )}
+          </div>
+        )}
       </div>
       {(!isVideoEnabled || isVideoSwitchedOff) && (
         <div className={classes.avatarContainer}>

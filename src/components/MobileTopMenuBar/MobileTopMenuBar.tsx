@@ -33,10 +33,11 @@ const useStyles = makeStyles((theme: Theme) => ({
 export default function MobileTopMenuBar() {
   const classes = useStyles();
   const { room } = useVideoContext();
+  const roomInfo = (window as any).roomInfo;
 
   return (
     <Grid container alignItems="center" justify="space-between" className={classes.container}>
-      <Typography variant="subtitle1">{room.name}</Typography>
+      <Typography variant="subtitle1">{roomInfo.name}</Typography>
       <div>
         <EndCallButton className={classes.endCallButton} />
         <Menu buttonClassName={classes.settingsButton} />
